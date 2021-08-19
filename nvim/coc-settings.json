@@ -1,0 +1,35 @@
+{
+	"coc.preferences.formatOnSaveFiletypes": ["ruby", "css", "markdown", "html", "sass"],
+	"solargraph.formatting": true,
+
+  "explorer.width": 35,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.previewAction.onHover": false,
+  "explorer.openAction.strategy": "select",
+  "explorer.keyMappings.global": {
+    "<cr>": ["expandable?", "expand", "open"],
+    "s": "open:split",
+    "v": "open:vsplit"
+  },
+
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "args": ["--log-file=/tmp/ccls.log", "-v=1"],
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+      "rootPatterns": [".ccls", "compile_commands.json"],
+      "initializationOptions": {
+        "index": {
+          "onChange": true
+        },
+        "highlight": { "lsRanges" : true }, 
+        "cache": {
+             "directory": "/tmp/ccls"
+           },
+           "client": {
+            "snippetSupport": true
+           }
+        }
+    }
+  }
+}

@@ -147,7 +147,6 @@ alias i="sudo pacman -S"
 # Connect to Cloud SQL with SQL Proxy
 alias connect_sql="./cloud_sql_proxy -instances=bubbly-fuze-316505:us-west2:data-fify=tcp:3306"
 alias connect_compute='gcloud beta compute ssh --zone "us-west2-c" "tagging-server-deployer"  --project "bubbly-fuze-316505"'
-alias ngrok="./ngrok http 5000"
 alias toDEV="rm ~/Desktop/Datafify/DatafifyApp/api/src/config/keys.js && ln -s ~/Desktop/Datafify/DEVkeys.js ~/Desktop/Datafify/DatafifyApp/api/src/config/keys.js"
 alias toPROD="rm ~/Desktop/Datafify/DatafifyApp/api/src/config/keys.js && ln -s ~/Desktop/Datafify/PRODkeys.js ~/Desktop/Datafify/DatafifyApp/api/src/config/keys.js && gcloud app deploy"
 alias logAPI="gcloud app logs tail -s api"
@@ -165,21 +164,20 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 # Recommended on Arch Wiki to install ruby
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-export PATH="$PATH:$GEM_HOME/bin"
+# export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+# export PATH="$PATH:$GEM_HOME/bin"
 
 # NODEJS PATH
-PATH="$HOME/.node_modules/bin:$PATH"
-export npm_config_prefix=~/.node_modules
 
 # EMACS PATH
-export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # PIP Path
-export PATH="$HOME/.local/bin:$PATH"
 
 # Google Cloud SDK
-export PATH=${0:A:h}/bin:$PATH
 
 # Reboot bluetooth
 alias rbluetooth="sudo systemctl restart bluetooth"
+# Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

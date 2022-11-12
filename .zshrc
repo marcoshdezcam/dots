@@ -145,7 +145,7 @@ alias i="sudo pacman -S"
 
 # ACQUIRE DEV
 # Connect to Cloud SQL with SQL Proxy
-alias connect_sql="./cloud_sql_proxy -instances=bubbly-fuze-316505:us-west2:data-fify=tcp:3306"
+alias connect_sql="./cloud_sql_proxy -instances=bubbly-fuze-316505:us-west2:datafy=tcp:3306"
 alias connect_compute='gcloud beta compute ssh --zone "us-west2-c" "tagging-server-deployer"  --project "bubbly-fuze-316505"'
 alias toDEV="rm ~/Desktop/Datafify/DatafifyApp/api/src/config/keys.js && ln -s ~/Desktop/Datafify/DEVkeys.js ~/Desktop/Datafify/DatafifyApp/api/src/config/keys.js"
 alias toPROD="rm ~/Desktop/Datafify/DatafifyApp/api/src/config/keys.js && ln -s ~/Desktop/Datafify/PRODkeys.js ~/Desktop/Datafify/DatafifyApp/api/src/config/keys.js && gcloud app deploy"
@@ -174,6 +174,8 @@ eval "$(rbenv init -)"
 # PIP Path
 
 # Google Cloud SDK
+# Wally (Moonlander flashing tool)
+alias wally="/home/marcos/Documents/wally"
 
 # Reboot bluetooth
 alias rbluetooth="sudo systemctl restart bluetooth"
@@ -181,3 +183,6 @@ alias rbluetooth="sudo systemctl restart bluetooth"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Neofetch
+# neofetch

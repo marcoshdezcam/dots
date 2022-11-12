@@ -96,3 +96,5 @@ tags
 termite/themes/
 
 termite/themesold/
+tags.lock
+tags.temp

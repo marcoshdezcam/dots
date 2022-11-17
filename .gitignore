@@ -94,7 +94,11 @@ nvim/autoload/plugged/
 tags
 
 termite/themes/
-
 termite/themesold/
+
 tags.lock
 tags.temp
+
+*.lock
+
+*.temp

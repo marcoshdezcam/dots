@@ -2,6 +2,7 @@
 let g:sneak#label = 1
 set tabstop=2                   " Insert 2 spaces with a tab
 
+
 " -------------------------------- Plugin Installers --------------------------------
 " auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))

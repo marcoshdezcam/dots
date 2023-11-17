@@ -1,5 +1,5 @@
 " Change leader key to ,
-let mapleader=","
+let mapleader="~"
 
 " Change between buffers
 nnoremap <Tab> :b<Space>
@@ -22,3 +22,6 @@ nnoremap <Leader>g :GitMessenger<CR>
 nnoremap <Leader><Space> :Files<CR>
 nnoremap <Leader>/ :BLines<CR>
 nnoremap <Leader><Tab> :Buffers<CR>
+
+" Commentary
+

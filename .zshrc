@@ -1,14 +1,20 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="miloshadzic"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,7 +74,7 @@ ZSH_THEME="miloshadzic"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zshmarks git-flow)
+plugins=(git zshmarks git-flow z zsh-syntax-highlighting zsh-bat zsh-autosuggestions you-should-use)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -116,12 +122,29 @@ alias gcu="git commit -m"
 alias gp="git push"
 alias gct="git checkout"
 
-# ZSH
+# ZSH Load config
 alias .="source ~/.zshrc"
 
-# NPM DEV
-alias build="npm run build"
-alias start="npm start"
+# Empty SWAP
+alias fsw="sudo swapoff -a && sudo swapon -a"
+# Clear PageCache
+alias clearCache="sudo sh -c 'echo 1 >  /proc/sys/vm/drop_caches'"
+# Clear Dentries and inodes
+alias clearCI="sudo sh -c 'echo 2 >  /proc/sys/vm/drop_caches'"
+
+# Clear PageCache, dentries and inodes 
+alias clearCDI="sudo sh -c 'echo 3 >  /proc/sys/vm/drop_caches'"
+
+# Enable v4l2loopback
+alias webcam="sudo modprobe v4l2loopback card_label='Huawei' exclusive_caps=1 video_nr=99 && sudo modprobe -r uvcvideo" 
+
+# Enable headset profile on XM-4000
+# alias headset="pactl set-card-profile bluez_card.F8_4E_17_49_11_92 headset-head-unit"
+
+# Yarn DEV
+alias build="yarn run build"
+alias start="yarn start"
+alias dev="yarn run dev"
 
 # Gcloud App Engine deploy to default project
 alias deploy="gcloud app deploy"
@@ -140,31 +163,29 @@ alias s="sudo "
 
 # Arch 
 # Update
-alias up="sudo pacman -Syyu"
-alias yup="yay -Syu"
+# alias up="sudo pacman -Syyu"
+# alias yup="yay -Syu"
 
-# Install 
-alias i="sudo pacman -S"
+# Arch Install 
+# alias i="sudo pacman -S"
 
-# ACQUIRE DEV
-# Connect to Cloud SQL with SQL Proxy
-alias connect_sql="./cloud_sql_proxy -instances=bubbly-fuze-316505:us-west2:datafy=tcp:3306"
-alias connect_compute='gcloud beta compute ssh --zone "us-west2-c" "tagging-server-deployer"  --project "bubbly-fuze-316505"'
-alias toDEV="rm ~/Desktop/Datafify/DatafifyApp/api/src/config/keys.js && ln -s ~/Desktop/Datafify/DEVkeys.js ~/Desktop/Datafify/DatafifyApp/api/src/config/keys.js"
-alias toPROD="rm ~/Desktop/Datafify/DatafifyApp/api/src/config/keys.js && ln -s ~/Desktop/Datafify/PRODkeys.js ~/Desktop/Datafify/DatafifyApp/api/src/config/keys.js && gcloud app deploy"
-alias logAPI="gcloud app logs tail -s api"
-alias logFRONT="gcloud app logs tail -s frontend"
+# Python
+alias py="python3"
 
 # Ubuntu
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade"
+alias upgradable="apt list --upgradable"
 alias autoremove="sudo apt autoremove"
 alias autoclean="sudo apt autoclean"
 
+alias neo="neofetch"
 # PATHS
 # RBENV path
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+alias h="htop"
 
 # Recommended on Arch Wiki to install ruby
 # export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
@@ -177,16 +198,20 @@ eval "$(rbenv init -)"
 # PIP Path
 
 # Google Cloud SDK
-# Wally (Moonlander flashing tool)
-alias wally="/home/marcos/Documents/wally"
 
 # Reboot bluetooth
-alias rbluetooth="sudo systemctl restart bluetooth"
+# alias rbluetooth="sudo systemctl restart bluetooth"
 
 # Node Version Manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Neofetch
-# neofetch
+# ZSH not show username on shell prompt 
+DEFAULT_USER=marcos
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/marcos/.lmstudio/bin"

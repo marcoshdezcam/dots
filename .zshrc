@@ -6,12 +6,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -29,14 +30,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -51,6 +51,9 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -74,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zshmarks git-flow z zsh-syntax-highlighting zsh-bat zsh-autosuggestions you-should-use)
+plugins=(git gh history npm jump git-flow gem gcloud dotenv docker pyenv zsh-interactive-cd vscode z zsh-syntax-highlighting zsh-bat zsh-autosuggestions you-should-use)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -89,129 +92,70 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch $(uname -m)"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
-#
-# ALIASES
-# File navigation
-alias c="clear"
-alias l="exa --header --long --grid"
-alias la="exa --header --long --grid --all"
-alias lt="exa --header --long --tree --level=2"
-alias lta="exa --header --long --tree --level=2 --all"
-alias lg="exa --header --long --git"
-alias lga="exa --header --long --git --all"
 
-# GIT
-alias g="git"
-alias gs="git status"
-alias ga="git add"
-alias gaa="git add ."
-alias gc="git commit"
-alias gcs="git commit -S"
-alias gcsm="git commit -S -m"
-alias gcu="git commit -m"
-alias gp="git push"
-alias gct="git checkout"
+# Enable Webcam
+alias cam="sudo /usr/sbin/modprobe v4l2loopback exclusive_caps=1 card_label='Huawei Camera'"
+# Virtual microphone
+alias mic="pactl load-module module-null-sink \
+	sink_name=Huawei-VirtualMic-Sink \
+	sink_properties=device.description=Huawei-Mic-Sink && 
+  pactl load-module module-remap-source \
+	master=Huawei-virtualMic-Monitor \
+	source_name=Huawei-VirtualMic-Sink \
+	source_properties=device.description=Huawei-Virtual-Mic"
 
-# ZSH Load config
+# Personal aliasses
 alias .="source ~/.zshrc"
-
-# Empty SWAP
-alias fsw="sudo swapoff -a && sudo swapon -a"
-# Clear PageCache
-alias clearCache="sudo sh -c 'echo 1 >  /proc/sys/vm/drop_caches'"
-# Clear Dentries and inodes
-alias clearCI="sudo sh -c 'echo 2 >  /proc/sys/vm/drop_caches'"
-
-# Clear PageCache, dentries and inodes 
-alias clearCDI="sudo sh -c 'echo 3 >  /proc/sys/vm/drop_caches'"
-
-# Enable v4l2loopback
-alias webcam="sudo modprobe v4l2loopback card_label='Huawei' exclusive_caps=1 video_nr=99 && sudo modprobe -r uvcvideo" 
-
-# Enable headset profile on XM-4000
-# alias headset="pactl set-card-profile bluez_card.F8_4E_17_49_11_92 headset-head-unit"
-
-# Yarn DEV
-alias build="yarn run build"
-alias start="yarn start"
-alias dev="yarn run dev"
-
-# Gcloud App Engine deploy to default project
-alias deploy="gcloud app deploy"
-
-# Bookmarks
-alias j="jump"
-
-# Rails
-alias r="rails"
-
-# Neovim
 alias v="nvim"
 
-# Sudo
-alias s="sudo "
-
-# Arch 
-# Update
-# alias up="sudo pacman -Syyu"
-# alias yup="yay -Syu"
-
-# Arch Install 
-# alias i="sudo pacman -S"
-
-# Python
-alias py="python3"
-
-# Ubuntu
+# Ubuntu Package Manager
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade"
-alias upgradable="apt list --upgradable"
 alias autoremove="sudo apt autoremove"
 alias autoclean="sudo apt autoclean"
+alias upgradable="apt list --upgradable"
 
-alias neo="neofetch"
-# PATHS
-# RBENV path
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# Open Web UI
+alias ia="open-webui serve"
 
-alias h="htop"
+# Navigation shortcuts
+alias j="jump"
+alias e="exit"
+# List Files & Directories
+alias l="eza --long --grid"
+alias la="eza --long --grid --all"
+alias lt="eza --long --tree "
+alias ld="eza --long --grid --only-dirs"
+alias lf="eza --long --grid --only-files"
+alias lg="eza --long --grid --git"
 
-# Recommended on Arch Wiki to install ruby
-# export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-# export PATH="$PATH:$GEM_HOME/bin"
-
-# NODEJS PATH
-
-# EMACS PATH
-
-# PIP Path
-
-# Google Cloud SDK
-
-# Reboot bluetooth
-# alias rbluetooth="sudo systemctl restart bluetooth"
 
 # Node Version Manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# ZSH not show username on shell prompt 
-DEFAULT_USER=marcos
+# Python Version Manager
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# Ruby Version Manager
+eval "$(~/.rbenv/bin/rbenv init - --no-rehash zsh)"
+
+# To customize prompt, run `` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/home/marcos/.lmstudio/bin"

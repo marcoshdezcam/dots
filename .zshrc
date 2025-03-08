@@ -128,12 +128,20 @@ alias autoremove="sudo apt autoremove"
 alias autoclean="sudo apt autoclean"
 alias upgradable="apt list --upgradable"
 
+# Empty SWAP
+alias fsw="sudo swapoff -a && sudo swapon -a"
+# Clear PageCache
+alias clearCache="sudo sh -c 'echo 1 >  /proc/sys/vm/drop_caches'"
+# Clear Dentries and inodes
+alias clearCI="sudo sh -c 'echo 2 >  /proc/sys/vm/drop_caches'"
+
 # Open Web UI
 alias ia="open-webui serve"
 
 # Navigation shortcuts
 alias j="jump"
 alias e="exit"
+
 # List Files & Directories
 alias l="eza --long --grid"
 alias la="eza --long --grid --all"
@@ -159,3 +167,4 @@ eval "$(~/.rbenv/bin/rbenv init - --no-rehash zsh)"
 # To customize prompt, run `` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+export PATH=$HOME/.local/bin:$PATH

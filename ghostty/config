@@ -45,10 +45,13 @@
 
 # TODO
 #  font
+font-family = "VictorMono Nerd Font"
+shell-integration = zsh
 
-#  fullscreen
+theme = Firewatch
+window-decoration = none
+
 #  keyboard shortcuts
+keybind = super+,=reload_config
 #
 #    tmux customization
-#         keyboard shortcust
-#         plugins

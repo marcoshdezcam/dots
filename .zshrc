@@ -127,6 +127,7 @@ alias upgrade="sudo apt upgrade"
 alias autoremove="sudo apt autoremove"
 alias autoclean="sudo apt autoclean"
 alias upgradable="apt list --upgradable"
+alias install="sudo apt install"
 
 # Empty SWAP
 alias fsw="sudo swapoff -a && sudo swapon -a"
@@ -145,9 +146,7 @@ alias c="clear"
 
 # TMUX
 alias tls="tmux ls"
-alias tn="tmux new -s"
-alias ta="tmux attach -t"
-alias tna="tmux attach -A"
+alias tn="tmux new "
 
 # List Files & Directories
 alias l="eza --long --grid"
@@ -158,8 +157,7 @@ alias lf="eza --long --grid --only-files"
 alias lg="eza --long --grid --git"
 
 # Node
-alias ts-run="npx ts-node-dev --respawn --transpile-only --debug"
-alias ts-test="yarn jest --watch"
+alias ts-run="npx ts-node-dev --respawn --transpile-only"
 # Version Manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

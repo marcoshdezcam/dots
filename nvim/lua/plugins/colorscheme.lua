@@ -9,15 +9,20 @@ return {
   --    vim.g.everforest_background = "hard"
   --  end,
   -- },
+
   {
-    "olimorris/onedarkpro.nvim",
-    priority = 1000, -- Ensure it loads first
+    "AlexvZyl/nordic.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("nordic").load()
+    end,
   },
 
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "onedark_vivid",
+      colorscheme = "nordic",
     },
   },
 }

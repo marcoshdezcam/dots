@@ -49,7 +49,7 @@ font-size = 14
 font-family = "JetBrainsMono Nerd Font"
 shell-integration = zsh
 
-theme = FrontEndDelight
+theme = nightfox
 window-decoration = none
 
 #  keyboard shortcuts

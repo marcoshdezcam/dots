@@ -45,7 +45,7 @@
 
 # TODO
 #  font
-font-size = 14
+font-size = 12
 font-family = "JetBrainsMono Nerd Font"
 shell-integration = zsh
 

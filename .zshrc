@@ -148,10 +148,8 @@ alias c="clear"
 alias tls="tmux ls"
 alias tn="tmux new "
 
-
 # List Ghostty themes
 alias gthemes="ghostty +list-themes"
-
 
 # List Files & Directories
 alias l="eza --long --grid"
@@ -161,9 +159,9 @@ alias ld="eza --long --grid --only-dirs"
 alias lf="eza --long --grid --only-files"
 alias lg="eza --long --grid --git"
 
-# Node
-alias ts-run="npx ts-node-dev --respawn --transpile-only"
-
+# Node Utils
+alias tsr="yarn run ts-node-dev --respawn --clear --exit-child"
+alias tst="yarn jest --watch"
 # Version Manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

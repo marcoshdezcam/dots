@@ -147,6 +147,7 @@ alias c="clear"
 # TMUX
 alias tls="tmux ls"
 alias tn="tmux new "
+alias ta="tmux attach -t"
 
 # List Ghostty themes
 alias gthemes="ghostty +list-themes"

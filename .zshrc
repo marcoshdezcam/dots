@@ -146,8 +146,10 @@ alias c="clear"
 
 # TMUX
 alias tls="tmux ls"
-alias tn="tmux new "
-alias ta="tmux attach -t"
+alias tns="tmux new -s"
+alias tas="tmux attach -t"
+alias tks="tmux kill-session -t"
+alias tkill="tmux kill-server"
 
 # List Ghostty themes
 alias gthemes="ghostty +list-themes"
@@ -161,7 +163,7 @@ alias lf="eza --long --grid --only-files"
 alias lg="eza --long --grid --git"
 
 # Node Utils
-alias tsr="yarn run ts-node-dev --respawn --clear --exit-child"
+alias tsr="yarn ts-node-dev --respawn --clear --exit-child"
 alias tst="yarn jest --watch"
 # Version Manager
 export NVM_DIR="$HOME/.nvm"

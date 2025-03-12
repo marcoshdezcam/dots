@@ -69,5 +69,14 @@ return {
         end
       end
     end,
+    keys = {
+      {
+        "<leader>td",
+        function()
+          require("neotest").run.run({ strategy = "neotest-jest" })
+        end,
+        desc = "Debug Nearest",
+      },
+    },
   },
 }

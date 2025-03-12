@@ -13,7 +13,16 @@ return {
       -- or a list of adapter names,
       -- or a table of adapter names, mapped to adapter configs.
       -- The adapter will then be automatically loaded with the config.
-      adapters = {},
+      adapters = {
+        ["neotest-jest"] = {
+          jestCommand = "yarn test",
+          jestConfigFile = "custom.jest.config.ts",
+          env = { CI = true },
+          cwd = function(path)
+            return vim.fn.getcwd()
+          end,
+        },
+      },
       -- Example for loading neotest-golang with a custom config
       -- adapters = {
       --   ["neotest-golang"] = {
@@ -21,6 +30,7 @@ return {
       --     dap_go_enabled = true,
       --   },
       -- },
+      discovery = { enabled = false },
       status = { virtual_text = true },
       output = { open_on_run = true },
       quickfix = {
@@ -76,6 +86,7 @@ return {
         end
       end
 
+      -- Adapters Table
       if opts.adapters then
         local adapters = {}
         for name, config in pairs(opts.adapters or {}) do

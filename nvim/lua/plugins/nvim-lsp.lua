@@ -11,7 +11,7 @@ return {
       --- @deprecated -- tsserver renamed to ts_ls but not yet released, so keep this for now
       --- the proper approach is to check the nvim-lspconfig release version when it's released to determine the server name dynamically
       tsserver = {
-        enabled = false,
+        enabled = true,
       },
       ts_ls = {
         enabled = false,

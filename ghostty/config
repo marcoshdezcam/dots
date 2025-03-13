@@ -28,7 +28,7 @@ font-size = 14
 font-family = "JetBrainsMono Nerd Font"
 shell-integration = zsh
 
-theme = nightfox
+theme = nordfox
 window-decoration = none
 
 #  keyboard shortcuts

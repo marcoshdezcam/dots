@@ -23,13 +23,6 @@ return {
           end,
         },
       },
-      -- Example for loading neotest-golang with a custom config
-      -- adapters = {
-      --   ["neotest-golang"] = {
-      --     go_test_args = { "-v", "-race", "-count=1", "-timeout=60s" },
-      --     dap_go_enabled = true,
-      --   },
-      -- },
       discovery = { enabled = false },
       status = { virtual_text = true },
       output = { open_on_run = true },

@@ -37,13 +37,9 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   # Hyprland
-  # programs.hyprland.enable = true; # enable Hyprland
-  # environment.systemPackages = [
-  #   # ... other packages
-  #   pkgs.kitty # required for the default Hyprland config
-  # ];
+  programs.hyprland.enable = true; # enable Hyprland
   # Optional, hint Electron apps to use Wayland:
-  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -92,6 +88,7 @@
         pkgs.obs-studio
         pkgs.chromium
         pkgs.insomnia
+        pkgs.brave
     ];
   };
 
@@ -137,22 +134,21 @@
       tks="tmux kill-session -t";
       tkill="tmux kill-server";
     };
-    # oh-my-zsh = {
-    #   enable = true;
-    #   plugins = [ "git" "git-flow" "jump" "you-should-use" ];
-    #   theme = "eastwood";
-    # };
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "git-flow" "jump" ];
+    };
   };
 
   # System wide packages
   environment.systemPackages = with pkgs; [
     pkgs.neofetch
 	  pkgs.ghostty
+	  pkgs.kitty
     pkgs.neovim
     pkgs.tmux
     pkgs.zsh
     pkgs.starship
-    pkgs.oh-my-posh
     pkgs.gnupg
     pkgs.git
     pkgs.gitflow
@@ -162,6 +158,7 @@
     pkgs.eza
     pkgs.vscode
     pkgs.hyprland
+    pkgs.wofi
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

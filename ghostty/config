@@ -24,7 +24,7 @@
 # resize-overlay-duration = 4s 200ms
 
 # Customization
-font-size = 14
+font-size = 12
 font-family = "JetBrainsMono Nerd Font"
 shell-integration = zsh
 

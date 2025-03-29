@@ -91,6 +91,7 @@
         pkgs.spotify
         pkgs.obs-studio
         pkgs.chromium
+        pkgs.insomnia
     ];
   };
 
@@ -130,12 +131,17 @@
       e = "exit";
       c = "clear";
       v = "nvim";
+      tls="tmux ls";
+      tns="tmux new -s";
+      tas="tmux attach -t";
+      tks="tmux kill-session -t";
+      tkill="tmux kill-server";
     };
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" "git-flow" "jump" ];
-      theme = "eastwood";
-    };
+    # oh-my-zsh = {
+    #   enable = true;
+    #   plugins = [ "git" "git-flow" "jump" "you-should-use" ];
+    #   theme = "eastwood";
+    # };
   };
 
   # System wide packages
@@ -145,10 +151,13 @@
     pkgs.neovim
     pkgs.tmux
     pkgs.zsh
+    pkgs.starship
+    pkgs.oh-my-posh
     pkgs.gnupg
     pkgs.git
     pkgs.gitflow
     pkgs.gcc
+    pkgs.unzip
     pkgs.zig
     pkgs.eza
     pkgs.vscode

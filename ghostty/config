@@ -31,8 +31,8 @@ shell-integration = zsh
 theme = nordfox
 window-decoration = none
 
-background-opacity = 0.95
-background-blur = 100
+background-opacity = 0.98
+background-blur = true
 
 #  keyboard shortcuts
 keybind = global:super+,=reload_config

@@ -32,6 +32,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
@@ -40,6 +41,8 @@
   programs.hyprland.enable = true; # enable Hyprland
   # Optional, hint Electron apps to use Wayland:
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # Waybar
+  programs.waybar.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -71,7 +74,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Nerf Fonts
+  # Nerd Fonts
   fonts.packages = with pkgs; [ nerdfonts ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -93,8 +96,8 @@
   };
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "marcos";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "marcos";
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
@@ -124,6 +127,7 @@
       lf="eza --long --grid --only-files";
       lg="eza --long --grid --git";
       rebuild = "sudo nixos-rebuild switch";
+      clean = "nix-collect-garbage";
       j = "jump";
       e = "exit";
       c = "clear";
@@ -134,7 +138,7 @@
       tks="tmux kill-session -t";
       tkill="tmux kill-server";
     };
-    oh-my-zsh = {
+    ohMyZsh = {
       enable = true;
       plugins = [ "git" "git-flow" "jump" ];
     };
@@ -158,7 +162,10 @@
     pkgs.eza
     pkgs.vscode
     pkgs.hyprland
+    pkgs.hyprpaper
     pkgs.wofi
+    pkgs.ripgrep
+    pkgs.htop
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

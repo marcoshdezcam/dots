@@ -92,6 +92,7 @@
         pkgs.chromium
         pkgs.insomnia
         pkgs.brave
+        pkgs.zoom-us
     ];
   };
 

@@ -163,6 +163,7 @@
     pkgs.vscode
     pkgs.hyprland
     pkgs.hyprpaper
+    pkgs.hyprwall
     pkgs.wofi
     pkgs.ripgrep
     pkgs.htop

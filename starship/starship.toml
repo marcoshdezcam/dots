@@ -1,170 +1,167 @@
-[aws]
-symbol = "  "
+# version: 1.0.0
+# Nordic-darker color palette
+#2e3440	user
+#3b4252	dir
+#434c5e	git
+#4c566a	version
+#5e81ac	doc (from dracula color palette)
+#6272a4	time (from dracula color palette)
 
-[buf]
-symbol = " "
+# some extra symbols
+# 
+# 
+
+#           _     _ 
+#  ______ _(_) __| |
+# |_  / _` | |/ _` |
+#  / / (_| | | (_| |
+# /___\__,_|_|\__,_|	zaid-hassan
+ 
+# ---------------------------------------------------------------
+format = """
+[░▒▓](#2e3440)\
+$os\
+$username\
+[](bg:#3b4252 fg:#2e3440)\
+$directory\
+[](fg:#3b4252 bg:#434c5e)\
+$git_branch\
+$git_status\
+[](fg:#434c5e bg:#4c566a)\
+$c\
+$python\
+$elixir\
+$elm\
+$golang\
+$haskell\
+$java\
+$julia\
+$nodejs\
+$nim\
+$rust\
+$scala\
+[](fg:#4c566a bg:#5e81ac)\
+$docker_context\
+[](fg:#5e81ac bg:#6272a4)\
+$time\
+[ ](fg:#6272a4)\
+\n
+$cmd_duration\
+$character\
+"""
+#add_newline = false
+
+[line_break]
+disabled = false
+
+[username]
+show_always = true
+style_user = "bg:#2e3440"
+style_root = "bg:#9A348E"
+format = '[ $user ]($style)'
+disabled = false
+
+[os]
+style = "bg:#9A348E"
+disabled = true # Disabled by default
+
+[directory]
+style = "bg:#3b4252"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
 
 [c]
 symbol = " "
+style = "bg:#4c566a"
+format = '[ $symbol ($version) ]($style)'
 
-[conda]
-symbol = " "
-
-[crystal]
-symbol = " "
-
-[dart]
-symbol = " "
-
-[directory]
-read_only = " 󰌾"
+[python]
+symbol = " "
+style = "bg:#4c566a"
+format = '[ $symbol ($version) ]($style)'
 
 [docker_context]
 symbol = " "
+style = "bg:#5e81ac"
+format = '[ $symbol $context ]($style) $path'
 
 [elixir]
-symbol = " "
+symbol = " "
+style = "bg:#434c5e"
+format = '[ $symbol ($version) ]($style)'
 
 [elm]
 symbol = " "
-
-[fennel]
-symbol = " "
-
-[fossil_branch]
-symbol = " "
+style = "bg:#434c5e"
+format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
-symbol = " "
+symbol = ""
+style = "bg:#434c5e"
+format = '[ $symbol $branch ]($style)'
 
-[git_commit]
-tag_symbol = '  '
+[git_status]
+style = "bg:#434c5e"
+format = '[$all_status$ahead_behind ]($style)'
 
 [golang]
 symbol = " "
-
-[guix_shell]
-symbol = " "
+style = "bg:#434c5e"
+format = '[ $symbol ($version) ]($style)'
 
 [haskell]
 symbol = " "
-
-[haxe]
-symbol = " "
-
-[hg_branch]
-symbol = " "
-
-[hostname]
-ssh_symbol = " "
+style = "bg:#434c5e"
+format = '[ $symbol ($version) ]($style)'
 
 [java]
 symbol = " "
+style = "bg:#434c5e"
+format = '[ $symbol ($version) ]($style)'
 
 [julia]
 symbol = " "
-
-[kotlin]
-symbol = " "
-
-[lua]
-symbol = " "
-
-[memory_usage]
-symbol = "󰍛 "
-
-[meson]
-symbol = "󰔷 "
-
-[nim]
-symbol = "󰆥 "
-
-[nix_shell]
-symbol = " "
+style = "bg:#434c5e"
+format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
-symbol = " "
+symbol = ""
+style = "bg:#434c5e"
+format = '[ $symbol ($version) ]($style)'
 
-[ocaml]
-symbol = " "
-
-[os.symbols]
-Alpaquita = " "
-Alpine = " "
-AlmaLinux = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Kali = " "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-RockyLinux = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Void = " "
-Windows = "󰍲 "
-
-[package]
-symbol = "󰏗 "
-
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
-
-[pijul_channel]
-symbol = " "
-
-[python]
-symbol = " "
-
-[rlang]
-symbol = "󰟔 "
-
-[ruby]
-symbol = " "
+[nim]
+symbol = " "
+style = "bg:##434c5e"
+format = '[ $symbol ($version) ]($style)'
 
 [rust]
-symbol = "󱘗 "
+symbol = ""
+style = "bg:#434c5e"
+format = '[ $symbol ($version) ]($style)'
 
 [scala]
 symbol = " "
+style = "bg:#434c5e"
+format = '[ $symbol ($version) ]($style)'
 
-[swift]
-symbol = " "
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:#6272a4"
+format = '[  $time ]($style)'
+	
+[character]
+success_symbol = '[ ➜](#6272a4)'
+error_symbol = '[ ➜](bold red)'
+#style = "bg:#6272a4"
 
-[zig]
-symbol = " "
-
-[gradle]
-symbol = " "
+[cmd_duration]
+min_time = 500
+format = ' [$duration](#6272a4)'

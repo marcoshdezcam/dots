@@ -44,6 +44,8 @@
   # Waybar
   programs.waybar.enable = true;
 
+  services.teamviewer.enable = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "es";
@@ -93,6 +95,8 @@
         pkgs.insomnia
         pkgs.brave
         pkgs.zoom-us
+        pkgs.teamviewer
+        pkgs.audacity
     ];
   };
 
@@ -168,6 +172,8 @@
     pkgs.wofi
     pkgs.ripgrep
     pkgs.htop
+    pkgs.brightnessctl
+
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -5,10 +5,9 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -86,18 +85,21 @@
     description = "Marcos";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-        pkgs.stremio
-        pkgs.nicotine-plus
-        pkgs.gitkraken
-        pkgs.spotify
-        pkgs.obs-studio
-        pkgs.chromium
-        pkgs.insomnia
-        pkgs.brave
-        pkgs.zoom-us
-        pkgs.teamviewer
-        pkgs.audacity
-        pkgs.ferdium
+      pkgs.stremio
+      pkgs.nicotine-plus
+      pkgs.gitkraken
+      pkgs.spotify
+      pkgs.obs-studio
+      pkgs.chromium
+      pkgs.insomnia
+      pkgs.brave
+      pkgs.zoom-us
+      pkgs.teamviewer
+      pkgs.audacity
+      pkgs.ferdium
+      # DEV
+      pkgs.tailwindcss
+      pkgs.nixfmt
     ];
   };
 
@@ -109,7 +111,7 @@
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
-# Install firefox.
+  # Install firefox.
   programs.firefox.enable = true;
   # Neovim as default editor
   programs.neovim = {
@@ -126,26 +128,26 @@
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
     shellAliases = {
-      l="eza --long --grid";
-      la="eza --long --grid --all";
-      lt="eza --long --tree";
-      ld="eza --long --grid --only-dirs";
-      lf="eza --long --grid --only-files";
-      lg="eza --long --grid --git";
-      neo="neofetch";
-      nerd="nerdfetch";
-      rebuild="sudo nixos-rebuild switch";
-      update="sudo nixos-rebuild switch --upgrade";
-      clean="sudo nix-collect-garbage";
+      l = "eza --long --grid";
+      la = "eza --long --grid --all";
+      lt = "eza --long --tree";
+      ld = "eza --long --grid --only-dirs";
+      lf = "eza --long --grid --only-files";
+      lg = "eza --long --grid --git";
+      neo = "neofetch";
+      nerd = "nerdfetch";
+      rebuild = "sudo nixos-rebuild switch";
+      update = "sudo nixos-rebuild switch --upgrade";
+      clean = "sudo nix-collect-garbage";
       j = "jump";
       e = "exit";
       c = "clear";
       v = "nvim";
-      tls="tmux ls";
-      tns="tmux new -s";
-      tas="tmux attach -t";
-      tks="tmux kill-session -t";
-      tkill="tmux kill-server";
+      tls = "tmux ls";
+      tns = "tmux new -s";
+      tas = "tmux attach -t";
+      tks = "tmux kill-session -t";
+      tkill = "tmux kill-server";
     };
     ohMyZsh = {
       enable = true;
@@ -157,8 +159,8 @@
   environment.systemPackages = with pkgs; [
     pkgs.neofetch
     pkgs.nerdfetch
-	  pkgs.ghostty
-	  pkgs.kitty
+    pkgs.ghostty
+    pkgs.kitty
     pkgs.neovim
     pkgs.fzf
     pkgs.tmux
@@ -178,6 +180,7 @@
     pkgs.hyprshot
     pkgs.hyprlock
     pkgs.hypridle
+    pkgs.hyprpicker
     pkgs.wofi
     pkgs.ripgrep
     pkgs.htop
@@ -199,6 +202,12 @@
   # Services
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Automatic cleanup
+  nix.gc.automatic = true;
+  nix.gc.dates = "daily";
+  nix.gc.options = "-delete-older-than 10d";
+  nix.settings.auto-optimise-store = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

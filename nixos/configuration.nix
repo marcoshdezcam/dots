@@ -157,6 +157,7 @@
 	  pkgs.ghostty
 	  pkgs.kitty
     pkgs.neovim
+    pkgs.fzf
     pkgs.tmux
     pkgs.zsh
     pkgs.starship
@@ -171,11 +172,13 @@
     pkgs.hyprland
     pkgs.hyprpaper
     pkgs.hyprwall
+    pkgs.hyprshot
+    pkgs.hyprlock
+    pkgs.hypridle
     pkgs.wofi
     pkgs.ripgrep
     pkgs.htop
     pkgs.brightnessctl
-    pkgs.hyprshot
     pkgs.swaynotificationcenter
     pkgs.pavucontrol
     pkgs.easyeffects

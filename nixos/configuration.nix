@@ -132,8 +132,11 @@
       ld="eza --long --grid --only-dirs";
       lf="eza --long --grid --only-files";
       lg="eza --long --grid --git";
-      rebuild = "sudo nixos-rebuild switch";
-      clean = "nix-collect-garbage";
+      neo="neofetch";
+      nerd="nerdfetch";
+      rebuild="sudo nixos-rebuild switch";
+      update="sudo nixos-rebuild switch --upgrade";
+      clean="sudo nix-collect-garbage";
       j = "jump";
       e = "exit";
       c = "clear";

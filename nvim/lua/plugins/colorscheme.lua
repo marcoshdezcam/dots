@@ -182,6 +182,7 @@ return {
       })
     end,
   },
+
   {
     "LazyVim/LazyVim",
     opts = {

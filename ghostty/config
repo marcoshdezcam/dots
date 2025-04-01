@@ -24,14 +24,14 @@
 # resize-overlay-duration = 4s 200ms
 
 # Customization
-font-size = 12
+font-size = 14
 font-family = "JetBrainsMono Nerd Font"
 shell-integration = zsh
 
 theme = nordfox
 window-decoration = none
 
-background-opacity = 0.98
+background-opacity = 0.90
 background-blur = true
 
 #  keyboard shortcuts

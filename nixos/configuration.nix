@@ -97,6 +97,7 @@
         pkgs.zoom-us
         pkgs.teamviewer
         pkgs.audacity
+        pkgs.ferdium
     ];
   };
 
@@ -152,6 +153,7 @@
   # System wide packages
   environment.systemPackages = with pkgs; [
     pkgs.neofetch
+    pkgs.nerdfetch
 	  pkgs.ghostty
 	  pkgs.kitty
     pkgs.neovim
@@ -173,7 +175,11 @@
     pkgs.ripgrep
     pkgs.htop
     pkgs.brightnessctl
-
+    pkgs.hyprshot
+    pkgs.swaynotificationcenter
+    pkgs.pavucontrol
+    pkgs.easyeffects
+    pkgs.scrcpy
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -7,17 +7,6 @@
 #5e81ac	doc (from dracula color palette)
 #6272a4	time (from dracula color palette)
 
-# some extra symbols
-# 
-# 
-
-#           _     _ 
-#  ______ _(_) __| |
-# |_  / _` | |/ _` |
-#  / / (_| | | (_| |
-# /___\__,_|_|\__,_|	zaid-hassan
- 
-# ---------------------------------------------------------------
 format = """
 [░▒▓](#2e3440)\
 $os\
@@ -62,8 +51,8 @@ format = '[ $user ]($style)'
 disabled = false
 
 [os]
-style = "bg:#9A348E"
-disabled = true # Disabled by default
+style = "bg:#6272a4"
+disabled = true
 
 [directory]
 style = "bg:#3b4252"
@@ -76,6 +65,7 @@ truncation_symbol = "…/"
 "Downloads" = " "
 "Music" = " "
 "Pictures" = " "
+"dots" = " "
 
 [c]
 symbol = " "
@@ -103,7 +93,7 @@ style = "bg:#434c5e"
 format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
-symbol = ""
+symbol = ""
 style = "bg:#434c5e"
 format = '[ $symbol $branch ]($style)'
 
@@ -153,10 +143,10 @@ format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = false
-time_format = "%R" # Hour:Minute Format
+time_format = "%R"             # Hour:Minute Format
 style = "bg:#6272a4"
-format = '[  $time ]($style)'
-	
+format = '[  $time ]($style)'
+
 [character]
 success_symbol = '[ ➜](#6272a4)'
 error_symbol = '[ ➜](bold red)'

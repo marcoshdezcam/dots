@@ -97,15 +97,18 @@
       spotify
       obs-studio
       chromium
-      insomnia
+      google-chrome
       brave
+      insomnia
       zoom-us
       teamviewer
       audacity
       ferdium
-      # DEV
-      tailwindcss
-      nixfmt-rfc-style
+      anki
+      slack
+      discord
+      drawio
+      rnote
     ];
   };
 

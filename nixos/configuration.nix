@@ -5,7 +5,8 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -30,21 +31,23 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver.enable = false;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-
   # Hyprland
   programs.hyprland.enable = true; # enable Hyprland
   # Optional, hint Electron apps to use Wayland:
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  # Waybar
   programs.waybar.enable = true;
-
   services.teamviewer.enable = true;
-
+  programs.nh.enable = true;
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  #
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "es";
@@ -83,23 +86,26 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "Marcos";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
-      pkgs.stremio
-      pkgs.nicotine-plus
-      pkgs.gitkraken
-      pkgs.spotify
-      pkgs.obs-studio
-      pkgs.chromium
-      pkgs.insomnia
-      pkgs.brave
-      pkgs.zoom-us
-      pkgs.teamviewer
-      pkgs.audacity
-      pkgs.ferdium
+      stremio
+      nicotine-plus
+      gitkraken
+      spotify
+      obs-studio
+      chromium
+      insomnia
+      brave
+      zoom-us
+      teamviewer
+      audacity
+      ferdium
       # DEV
-      pkgs.tailwindcss
-      pkgs.nixfmt
+      tailwindcss
+      nixfmt-rfc-style
     ];
   };
 
@@ -136,13 +142,16 @@
       lg = "eza --long --grid --git";
       neo = "neofetch";
       nerd = "nerdfetch";
-      rebuild = "sudo nixos-rebuild switch";
-      update = "sudo nixos-rebuild switch --upgrade";
-      clean = "sudo nix-collect-garbage";
       j = "jump";
       e = "exit";
       c = "clear";
       v = "nvim";
+      # NixOS
+      rebuild = "sudo nixos-rebuild switch";
+      update = "sudo nixos-rebuild switch --upgrade";
+      clean = "sudo nix-collect-garbage";
+      nsh = "nix-shell --run zsh";
+      # TMUX
       tls = "tmux ls";
       tns = "tmux new -s";
       tas = "tmux attach -t";
@@ -151,44 +160,47 @@
     };
     ohMyZsh = {
       enable = true;
-      plugins = [ "git" "git-flow" "jump" ];
+      plugins = [
+        "git"
+        "git-flow"
+        "jump"
+      ];
     };
   };
 
   # System wide packages
   environment.systemPackages = with pkgs; [
-    pkgs.neofetch
-    pkgs.nerdfetch
-    pkgs.ghostty
-    pkgs.kitty
-    pkgs.neovim
-    pkgs.fzf
-    pkgs.tmux
-    pkgs.zsh
-    pkgs.starship
-    pkgs.gnupg
-    pkgs.git
-    pkgs.gitflow
-    pkgs.gcc
-    pkgs.unzip
-    pkgs.zig
-    pkgs.eza
-    pkgs.vscode
-    pkgs.hyprland
-    pkgs.hyprpaper
-    pkgs.hyprwall
-    pkgs.hyprshot
-    pkgs.hyprlock
-    pkgs.hypridle
-    pkgs.hyprpicker
-    pkgs.wofi
-    pkgs.ripgrep
-    pkgs.htop
-    pkgs.brightnessctl
-    pkgs.swaynotificationcenter
-    pkgs.pavucontrol
-    pkgs.easyeffects
-    pkgs.scrcpy
+    neofetch
+    nerdfetch
+    ghostty
+    neovim
+    fzf
+    tmux
+    zsh
+    starship
+    gnupg
+    git
+    gitflow
+    gcc
+    unzip
+    zig
+    eza
+    vscode
+    hyprland
+    hyprpaper
+    hyprwall
+    hyprshot
+    hyprlock
+    hypridle
+    hyprpicker
+    wofi
+    ripgrep
+    htop
+    brightnessctl
+    swaynotificationcenter
+    pavucontrol
+    easyeffects
+    scrcpy
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

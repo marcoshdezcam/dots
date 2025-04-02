@@ -1,14 +1,10 @@
 {
     "height": 35, 
+    // "output": "eDP-1",
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
     "modules-right": ["pulseaudio", "backlight", "network", "cpu", "memory", "battery", "clock", "tray"],
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "sway/window": {
-        "max-length": 50
-    },
+    
     "tray": {
         // "icon-size": 21,
         "spacing": 10

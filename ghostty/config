@@ -31,7 +31,7 @@ shell-integration = zsh
 theme = nordfox
 window-decoration = none
 
-background-opacity = 0.90
+background-opacity = 0.99
 background-blur = true
 
 #  keyboard shortcuts

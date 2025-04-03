@@ -150,10 +150,12 @@
       c = "clear";
       v = "nvim";
       # NixOS
-      rebuild = "sudo nixos-rebuild switch";
-      update = "sudo nixos-rebuild switch --upgrade";
-      clean = "sudo nix-collect-garbage";
-      nsh = "nix-shell --run zsh";
+      nconfig = "cd ~/dots/ && nix-shell --run zsh";
+      nbuild = "sudo nixos-rebuild switch";
+      nupdate = "sudo nixos-rebuild switch --upgrade";
+      nclean = "sudo nix-collect-garbage";
+      nshell = "nix-shell --run zsh";
+      nsearch = "nix-env -qP --available";
       # TMUX
       tls = "tmux ls";
       tns = "tmux new -s";

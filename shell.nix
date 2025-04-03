@@ -4,17 +4,22 @@
 
 pkgs.mkShell {
   packages = with pkgs; [
-    nodejs_22
-    lua
-    stylua
+    lua51Packages.lua
     nixd
     nixfmt-rfc-style
     nil
     cargo
     tailwindcss
-    lua-language-server
+    nodejs_22
+    nodePackages.prettier
+    python313
+    lazygit
+    fd
+    lua51Packages.luarocks-nix
+    tree-sitter
   ];
   shellHook = ''
-    echo "Welcome to your config"
+    clear
+    echo "Marco's Dots"
   '';
 }

@@ -4,6 +4,13 @@
 
 { config, pkgs, ... }:
 
+let
+  unstable = import <nixos-unstable> {
+    config = {
+      allowUnfree = true;
+    };
+  };
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -213,6 +220,17 @@
     pavucontrol
     easyeffects
     scrcpy
+    # NVIM Environment
+    lua51Packages.lua
+    nixd
+    nixfmt-rfc-style
+    nil
+    cargo
+    nodePackages.prettier
+    lazygit
+    fd
+    lua51Packages.luarocks-nix
+    tree-sitter
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

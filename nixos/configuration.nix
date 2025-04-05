@@ -5,11 +5,7 @@
 { config, pkgs, ... }:
 
 let
-  unstable = import <nixos-unstable> {
-    config = {
-      allowUnfree = true;
-    };
-  };
+  unstable = import <nixos-unstable> { };
 in
 {
   imports = [
@@ -89,12 +85,13 @@ in
   fonts.packages = with pkgs; [ nerdfonts ];
 
   services.udev.extraRules = ''
-    # Rules for Oryx web flashing and live training
+    # ZSA Moonlander keyboard Oryx web flashing & training
     KERNEL=="hidraw*", ATTRS{idVendor}=="16c0", MODE="0664", GROUP="plugdev"
     KERNEL=="hidraw*", ATTRS{idVendor}=="3297", MODE="0664", GROUP="plugdev"
     # Keymapp / Wally Flashing rules for the Moonlander and Planck EZ
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE:="0666", SYMLINK+="stm32_dfu"
   '';
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.marcos = {
     shell = pkgs.zsh;
@@ -123,6 +120,7 @@ in
       discord
       drawio
       rnote
+      unstable.ollama
     ];
   };
 
@@ -221,6 +219,7 @@ in
     easyeffects
     scrcpy
     # NVIM Environment
+    unstable.stylua
     lua51Packages.lua
     nixd
     nixfmt-rfc-style
@@ -246,11 +245,11 @@ in
   services.openssh.enable = true;
 
   # Automatic cleanup
-  nix.gc.automatic = true;
-  nix.gc.dates = "daily";
-  nix.gc.options = "-delete-older-than 10d";
-  nix.settings.auto-optimise-store = true;
-
+  # nix.gc.automatic = true;
+  # nix.gc.dates = "daily";
+  # nix.gc.options = "-delete-older-than 10d";
+  # nix.settings.auto-optimise-store = true;
+  #
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

@@ -34,10 +34,9 @@ return {
             MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
           }
         end,
-        theme = "wave",              -- Load "wave" theme
+        theme = "dragon",              -- Load "wave" theme
         background = {               -- map the value of 'background' option to a theme
-          transparent = true,
-          dark = "wave",           -- try "dragon" !
+          dark = "dragon",           -- try "dragon" !
           light = "lotus"
         },
       })

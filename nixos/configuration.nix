@@ -5,7 +5,11 @@
 { config, pkgs, ... }:
 
 let
-  unstable = import <nixos-unstable> { };
+  unstable = import <nixos-unstable> {
+    config = {
+      allowUnfree = true;
+    };
+  };
 in
 {
   imports = [
@@ -33,10 +37,14 @@ in
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = false;
 
-  # Enable the GNOME Desktop Environment.
+  # DE || Window Manager Config
+  # GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   # Hyprland
@@ -45,12 +53,17 @@ in
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   programs.waybar.enable = true;
   services.teamviewer.enable = true;
-  programs.nh.enable = true;
+
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+  };
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
-  #
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "es";
@@ -66,6 +79,7 @@ in
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -104,7 +118,6 @@ in
     packages = with pkgs; [
       stremio
       nicotine-plus
-      gitkraken
       spotify
       obs-studio
       chromium
@@ -114,12 +127,15 @@ in
       zoom-us
       teamviewer
       audacity
-      ferdium
-      anki
       slack
       discord
-      drawio
       rnote
+      copyq
+      unstable.flameshot
+      unstable.anki
+      unstable.gitkraken
+      unstable.drawio
+      unstable.ferdium
       unstable.ollama
     ];
   };
@@ -139,8 +155,6 @@ in
     enable = true;
     defaultEditor = true;
   };
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # ZSH Shell
   programs.zsh = {
@@ -160,12 +174,12 @@ in
       j = "jump";
       e = "exit";
       c = "clear";
-      v = "nvim";
+      v = "nvim .";
       # NixOS
       nconfig = "cd ~/dots/ && nix-shell --run zsh";
       nbuild = "sudo nixos-rebuild switch";
       nupdate = "sudo nixos-rebuild switch --upgrade";
-      nclean = "sudo nix-collect-garbage";
+      nclean = "nh clean all";
       nshell = "nix-shell --run zsh";
       nsearch = "nix-env -qP --available";
       # TMUX
@@ -187,6 +201,9 @@ in
 
   # System wide packages
   environment.systemPackages = with pkgs; [
+    brightnessctl
+    pavucontrol
+    easyeffects
     neofetch
     nerdfetch
     ghostty
@@ -211,21 +228,19 @@ in
     hypridle
     hyprpicker
     wofi
-    ripgrep
     htop
-    brightnessctl
     swaynotificationcenter
-    pavucontrol
-    easyeffects
     scrcpy
+
     # NVIM Environment
+    lua
     unstable.stylua
-    lua51Packages.lua
     nixd
     nixfmt-rfc-style
     nil
+    wl-clipboard
+    ripgrep
     cargo
-    nodePackages.prettier
     lazygit
     fd
     lua51Packages.luarocks-nix
@@ -244,12 +259,6 @@ in
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # Automatic cleanup
-  # nix.gc.automatic = true;
-  # nix.gc.dates = "daily";
-  # nix.gc.options = "-delete-older-than 10d";
-  # nix.settings.auto-optimise-store = true;
-  #
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

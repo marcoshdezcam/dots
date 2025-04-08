@@ -98,6 +98,10 @@ in
   # Nerd Fonts
   fonts.packages = with pkgs; [ nerdfonts ];
 
+  programs.nix-ld.libraries = with pkgs; [
+    # unstable.stylua
+  ];
+
   services.udev.extraRules = ''
     # ZSA Moonlander keyboard Oryx web flashing & training
     KERNEL=="hidraw*", ATTRS{idVendor}=="16c0", MODE="0664", GROUP="plugdev"
@@ -137,6 +141,7 @@ in
       unstable.drawio
       unstable.ferdium
       unstable.ollama
+      unstable.code-cursor
     ];
   };
 
@@ -150,10 +155,13 @@ in
 
   # Install firefox.
   programs.firefox.enable = true;
-  # Neovim as default editor
+
+  # LazyVim configuration
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+    withNodeJs = true;
+    runtime = { };
   };
 
   # ZSH Shell
@@ -207,7 +215,6 @@ in
     neofetch
     nerdfetch
     ghostty
-    neovim
     fzf
     tmux
     zsh

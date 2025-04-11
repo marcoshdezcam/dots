@@ -54,6 +54,10 @@ in
   programs.waybar.enable = true;
   services.teamviewer.enable = true;
 
+  environment.variables = {
+    NIX_BUILD_SHELL = "zsh";
+  };
+
   programs.nh = {
     enable = true;
     clean.enable = true;
@@ -156,14 +160,6 @@ in
   # Install firefox.
   programs.firefox.enable = true;
 
-  # LazyVim configuration
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    withNodeJs = true;
-    runtime = { };
-  };
-
   # ZSH Shell
   programs.zsh = {
     enable = true;
@@ -175,7 +171,7 @@ in
       la = "eza --long --grid --all";
       lt = "eza --long --tree";
       ld = "eza --long --grid --only-dirs";
-      lf = "eza --long --grid --only-files";
+      li = "eza --long --grid --only-files";
       lg = "eza --long --grid --git";
       neo = "neofetch";
       nerd = "nerdfetch";
@@ -196,6 +192,8 @@ in
       tas = "tmux attach -t";
       tks = "tmux kill-session -t";
       tkill = "tmux kill-server";
+      # Hyprland
+      logout = "hyprctl dispatch exit";
     };
     ohMyZsh = {
       enable = true;
@@ -209,6 +207,7 @@ in
 
   # System wide packages
   environment.systemPackages = with pkgs; [
+    home-manager
     brightnessctl
     pavucontrol
     easyeffects
@@ -238,20 +237,7 @@ in
     htop
     swaynotificationcenter
     scrcpy
-
-    # NVIM Environment
-    lua
-    unstable.stylua
-    nixd
-    nixfmt-rfc-style
-    nil
-    wl-clipboard
-    ripgrep
-    cargo
-    lazygit
-    fd
-    lua51Packages.luarocks-nix
-    tree-sitter
+    networkmanager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

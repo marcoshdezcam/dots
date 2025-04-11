@@ -27,6 +27,15 @@
 
   swapDevices = [ ];
 
+  # UDEV Rules
+  services.udev.extraRules = ''
+    # ZSA Moonlander keyboard Oryx web flashing & training
+    KERNEL=="hidraw*", ATTRS{idVendor}=="16c0", MODE="0664", GROUP="plugdev"
+    KERNEL=="hidraw*", ATTRS{idVendor}=="3297", MODE="0664", GROUP="plugdev"
+    # Keymapp / Wally Flashing rules for the Moonlander and Planck EZ
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE:="0666", SYMLINK+="stm32_dfu"
+  '';
+  
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction

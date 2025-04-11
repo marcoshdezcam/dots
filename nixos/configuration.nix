@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 let
@@ -20,70 +16,48 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "tilab"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "America/Mexico_City";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = false;
-
-  # DE || Window Manager Config
-  # GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  # Hyprland
-  programs.hyprland.enable = true; # enable Hyprland
-  # Optional, hint Electron apps to use Wayland:
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  programs.waybar.enable = true;
-  services.teamviewer.enable = true;
-
+  
+  # ENV Variables
   environment.variables = {
     NIX_BUILD_SHELL = "zsh";
   };
+  
+  #############################
+  ########## Network ##########
+  networking.hostName = "tilab"; 
+  networking.networkmanager.enable = true;
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
 
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-  };
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
+  ############################
+  ########## Locale ##########
+  time.timeZone = "America/Mexico_City";
+  i18n.defaultLocale = "en_US.UTF-8";
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "es";
     variant = "";
   };
-
   # Configure console keymap
   console.keyMap = "es";
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
+  ####################################
+  ########## NixOS Features ##########
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+  # Eperimental features
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  
+  ###########################################
+  ########## Pipewire Audio config ##########
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -96,25 +70,12 @@ in
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Nerd Fonts
+  ###########################
+  ########## Fonts ##########
   fonts.packages = with pkgs; [ nerdfonts ];
 
-  programs.nix-ld.libraries = with pkgs; [
-    # unstable.stylua
-  ];
-
-  services.udev.extraRules = ''
-    # ZSA Moonlander keyboard Oryx web flashing & training
-    KERNEL=="hidraw*", ATTRS{idVendor}=="16c0", MODE="0664", GROUP="plugdev"
-    KERNEL=="hidraw*", ATTRS{idVendor}=="3297", MODE="0664", GROUP="plugdev"
-    # Keymapp / Wally Flashing rules for the Moonlander and Planck EZ
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE:="0666", SYMLINK+="stm32_dfu"
-  '';
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  ##########################
+  ########## User ##########
   users.users.marcos = {
     shell = pkgs.zsh;
     isNormalUser = true;
@@ -148,19 +109,9 @@ in
       unstable.code-cursor
     ];
   };
-
-  # Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "marcos";
-
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
-
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  # ZSH Shell
+  
+  ##########################
+  ########## ZSH  ##########
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -204,8 +155,9 @@ in
       ];
     };
   };
-
-  # System wide packages
+  
+  #####################################
+  ########## System packages ##########
   environment.systemPackages = with pkgs; [
     home-manager
     brightnessctl
@@ -240,6 +192,26 @@ in
     networkmanager
   ];
 
+  ##############################
+  ########## Programs ##########
+  # Hyprland
+  programs.hyprland.enable = true; # enable Hyprland
+  # Optional, hint Electron apps to use Wayland:
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # Waybar
+  programs.waybar.enable = true;
+  # GSConnect
+  programs.kdeconnect = {
+    enable = true;
+    package = pkgs.gnomeExtensions.gsconnect;
+  };
+  # Install firefox.
+  programs.firefox.enable = true;
+  # Yet Another Nix Helper
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -247,16 +219,33 @@ in
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  # Services
+  # Not compatible with NixOS
+  programs.nix-ld.libraries = with pkgs; [
+    # unstable.stylua
+  ];
+  
+  ##############################
+  ########## Services ##########
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  # Enable the X11 windowing system.
+  services.xserver.enable = false;
+  # Enable automatic login for the user.
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "marcos";
+  # GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  # GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
+  # Teamviewer
+  services.teamviewer.enable = true;
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

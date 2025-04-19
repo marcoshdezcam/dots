@@ -100,6 +100,8 @@ in
       discord
       rnote
       copyq
+      unstable.megasync
+      unstable.calibre
       unstable.flameshot
       unstable.anki
       unstable.gitkraken
@@ -107,6 +109,7 @@ in
       unstable.ferdium
       unstable.ollama
       unstable.code-cursor
+      unstable.bitwarden-desktop
     ];
   };
   
@@ -131,6 +134,7 @@ in
       c = "clear";
       v = "nvim .";
       # NixOS
+      ndev = "nix develop -c $SHELL";
       nconfig = "cd ~/dots/ && nix-shell --run zsh";
       nbuild = "sudo nixos-rebuild switch";
       nupdate = "sudo nixos-rebuild switch --upgrade";
@@ -145,6 +149,8 @@ in
       tkill = "tmux kill-server";
       # Hyprland
       logout = "hyprctl dispatch exit";
+      # Waybar
+      wrestart = "killall waybar; waybar & disown";
     };
     ohMyZsh = {
       enable = true;
@@ -229,7 +235,7 @@ in
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   # Enable the X11 windowing system.
-  services.xserver.enable = false;
+  services.xserver.enable = true;
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "marcos";

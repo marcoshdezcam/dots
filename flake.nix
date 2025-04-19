@@ -17,12 +17,12 @@
         {
           buildInputs = with pkgs; [
             neovim
-	    nodejs_22
+	          nodejs_22
+            lua
           ];
 
           shellHook = ''
             echo "Dots Environment"
-	    zsh
           '';
         };
   };
